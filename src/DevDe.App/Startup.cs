@@ -1,4 +1,5 @@
-﻿using DevDe.App.Data;
+﻿using AutoMapper;
+using DevDe.App.Data;
 using DevDe.Business.Interfaces;
 using DevDe.Data.Context;
 using DevDe.Data.Repository;
@@ -49,6 +50,8 @@ namespace DevDe.App
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
