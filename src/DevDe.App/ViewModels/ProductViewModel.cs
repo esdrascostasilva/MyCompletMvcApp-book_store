@@ -13,6 +13,10 @@ namespace DevDe.App.ViewModels
         [Key]
         public Guid Id { get; set; }
 
+        [Required(ErrorMessage = "The field {0} is mandatory")]
+        [DisplayName("Provider")]
+        public Guid ProviderId { get; set; }
+
         [Required(ErrorMessage ="The field {0} is mandatory")]
         [StringLength(200, ErrorMessage ="The field {0} need have between {2} and {1} characters", MinimumLength = 2)]
         public string Name { get; set; }
@@ -35,5 +39,8 @@ namespace DevDe.App.ViewModels
         public bool Active { get; set; }
 
         public ProviderViewModel Provider { get; set; }
+
+        public IEnumerable<ProviderViewModel> Providers { get; set; }
+
     }
 }
