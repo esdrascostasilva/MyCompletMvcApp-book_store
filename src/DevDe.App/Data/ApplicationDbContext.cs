@@ -13,5 +13,6 @@ namespace DevDe.App.Data
             : base(options)
         {
         }
+      
     }
 }

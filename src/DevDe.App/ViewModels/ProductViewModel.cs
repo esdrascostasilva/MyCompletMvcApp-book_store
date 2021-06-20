@@ -25,6 +25,7 @@ namespace DevDe.App.ViewModels
         [StringLength(1000, ErrorMessage = "The field {0} need have between {2} and {1} characters", MinimumLength = 2)]
         public string Description { get; set; }
 
+        [DisplayName("Product's Image")]
         public IFormFile ImageUpload { get; set; }
 
         public string Image { get; set; }
