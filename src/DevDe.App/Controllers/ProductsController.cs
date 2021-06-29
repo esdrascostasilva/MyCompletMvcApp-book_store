@@ -90,14 +90,34 @@ namespace DevDe.App.Controllers
             if (id != productViewModel.Id)
             {
                 return NotFound();
-            }
+            }   
+
+            var updateProduct = await GetProduct(id);
+            productViewModel.Provider = updateProduct.Provider;
+            productViewModel.Image = updateProduct.Image;
 
             if (!ModelState.IsValid)
             {
                 return View(productViewModel);
             }
 
-            await _productRepository.Update(_mapper.Map<Product>(productViewModel));
+            if (productViewModel.ImageUpload != null)
+            {
+                var imgPrefix = Guid.NewGuid() + "_";
+                if (!await UploadFile(productViewModel.ImageUpload, imgPrefix))
+                {
+                    return View(productViewModel);
+                }
+
+                updateProduct.Image = imgPrefix + productViewModel.ImageUpload.FileName;
+            }
+
+            updateProduct.Name = productViewModel.Name;
+            updateProduct.Description = productViewModel.Description;
+            updateProduct.Value = productViewModel.Value;
+            updateProduct.Active = productViewModel.Active;
+
+            await _productRepository.Update(_mapper.Map<Product>(updateProduct));
 
             return RedirectToAction("Index");
         }
