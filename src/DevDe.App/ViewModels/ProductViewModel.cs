@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DevDe.App.Extensions;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,30 +14,31 @@ namespace DevDe.App.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "The field {0} is mandatory")]
-        [DisplayName("Provider")]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [DisplayName("Fornecedor")]
         public Guid ProviderId { get; set; }
 
-        [Required(ErrorMessage ="The field {0} is mandatory")]
-        [StringLength(200, ErrorMessage ="The field {0} need have between {2} and {1} characters", MinimumLength = 2)]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [StringLength(200, ErrorMessage ="O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "The field {0} is mandatory")]
-        [StringLength(1000, ErrorMessage = "The field {0} need have between {2} and {1} characters", MinimumLength = 2)]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [StringLength(1000, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         public string Description { get; set; }
 
-        [DisplayName("Product's Image")]
+        [DisplayName("Imagem do produto")]
         public IFormFile ImageUpload { get; set; }
 
         public string Image { get; set; }
 
-        [Required(ErrorMessage = "The field {0} is mandatory")]
+        [Coin]
+        [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public decimal Value { get; set; }
 
         [ScaffoldColumn(false)]
         public DateTime DateRegister { get; set; }
 
-        [DisplayName("Active?")]
+        [DisplayName("Ativo?")]
         public bool Active { get; set; }
 
         public ProviderViewModel Provider { get; set; }
