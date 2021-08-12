@@ -1,13 +1,14 @@
-﻿@model DevDe.App.ViewModels.ProviderViewModel
+﻿@using DevDe.App.Extensions
+@model DevDe.App.ViewModels.ProviderViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>ProviderViewModel</h4>
+    <h4>Read-only information</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -19,14 +20,9 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Document)
         </dt>
+
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Document)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TypeProvider)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TypeProvider)
+            @this.DocumentFormatter(Model.TypeProvider, Model.Document)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Active)
@@ -36,7 +32,10 @@
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a class="btn btn-info" asp-action="Index">Back to List</a>
 </div>
+
+<partial name="_AddressDetails" />

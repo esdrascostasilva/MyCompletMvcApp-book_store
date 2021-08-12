@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDe.App", "src\DevDe.App\DevDe.App.csproj", "{A1FB5692-06B8-45D1-A3ED-1907D8E918B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevDe.App", "src\DevDe.App\DevDe.App.csproj", "{A1FB5692-06B8-45D1-A3ED-1907D8E918B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDe.Business", "src\DevDe.Business\DevDe.Business.csproj", "{42DF8D97-BC79-4187-BFCB-4599E5E333E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevDe.Business", "src\DevDe.Business\DevDe.Business.csproj", "{42DF8D97-BC79-4187-BFCB-4599E5E333E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevDe.Data", "src\DevDe.Data\DevDe.Data.csproj", "{D138C879-BD8A-453C-B549-51CC480EEAA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevDe.Data", "src\DevDe.Data\DevDe.Data.csproj", "{D138C879-BD8A-453C-B549-51CC480EEAA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

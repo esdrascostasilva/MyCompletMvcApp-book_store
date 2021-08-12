@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DevDe.App.ViewModels.ProviderViewModel>
+﻿@using DevDe.App.Extensions
+
+@model IEnumerable<DevDe.App.ViewModels.ProviderViewModel>
 
 @{
     ViewData["Title"] = "Providers List";
@@ -31,7 +33,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Document)
+                @this.DocumentFormatter(item.TypeProvider,item.Document)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
