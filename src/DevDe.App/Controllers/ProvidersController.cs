@@ -22,11 +22,13 @@ namespace DevDe.App.Controllers
             _addressRepository = addressRepository;
         }
 
+        [Route("providers-list")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProviderViewModel>>(await _providerRepository.GetAll()));
         }
 
+        [Route("providers-data/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
             var providerViewModel = await GetProviderAddress(id);
@@ -38,11 +40,13 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
+        [Route("new-provider")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Route("new-provider")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProviderViewModel providerViewModel)
@@ -56,6 +60,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("providers-edit/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var providerViewModel = await GetProviderProductsAddress(id);
@@ -68,6 +73,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
+        [Route("providers-edit/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProviderViewModel providerViewModel)
@@ -87,6 +93,7 @@ namespace DevDe.App.Controllers
             
         }
 
+        [Route("delete-providers/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var providerViewModel = await GetProviderAddress(id);
@@ -98,6 +105,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
+        [Route("delete-providers/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -114,6 +122,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("get-address-providers/{id:guid}")]
         public async Task<IActionResult> GetAddress(Guid id)
         {
             var provider = await GetProviderAddress(id);
@@ -126,6 +135,7 @@ namespace DevDe.App.Controllers
             return PartialView("_AddressDetails", provider);
         }
 
+        [Route("update-address-providers/{id:guid}")]
         public async Task<IActionResult> AddressUpdate(Guid id)
         {
             var provider = await GetProviderAddress(id);
@@ -138,6 +148,7 @@ namespace DevDe.App.Controllers
             return PartialView("_AddressUpdate", new ProviderViewModel { Address = provider.Address });
         }
 
+        [Route("update-address-providers/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddressUpdate(ProviderViewModel providerViewModel)

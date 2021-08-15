@@ -24,11 +24,13 @@ namespace DevDe.App.Controllers
             _mapper = mapper;
         }
 
+        [Route("products-list")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetProductsProviders()));
         }
 
+        [Route("products-details/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
             var productViewModel = await GetProduct(id);
@@ -41,12 +43,14 @@ namespace DevDe.App.Controllers
             return View(productViewModel);
         }
 
+        [Route("new-product")]
         public async Task<IActionResult> Create()
         {
             var productViewModel = await FillProviders(new ProductViewModel());
             return View(productViewModel);
         }
 
+        [Route("new-product")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel productViewModel)
@@ -71,6 +75,7 @@ namespace DevDe.App.Controllers
             
         }
 
+        [Route("edit-product/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var productViewModel = await GetProduct(id);
@@ -83,6 +88,7 @@ namespace DevDe.App.Controllers
             return View(productViewModel);
         }
 
+        [Route("edit-product/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProductViewModel productViewModel)
@@ -122,6 +128,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("product-delete/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var product = await GetProduct(id);
@@ -134,6 +141,7 @@ namespace DevDe.App.Controllers
             return View(product);
         }
 
+        [Route("product-delete/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
