@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevDe.Business.Interfaces
 {
-    public interface IProviderService
+    public interface IProviderService : IDisposable
     {
         Task Add(Provider provider);
         Task Update(Provider provider);

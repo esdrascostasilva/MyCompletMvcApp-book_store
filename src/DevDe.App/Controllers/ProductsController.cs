@@ -15,13 +15,16 @@ namespace DevDe.App.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IProviderRepository _providerRepository;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository, IProviderRepository providerRepository, IMapper mapper)
+        public ProductsController(IProductRepository productRepository, IProviderRepository providerRepository, 
+                                    IProductService productService, IMapper mapper, INotifier notifier) : base(notifier)
         {
             _productRepository = productRepository;
             _providerRepository = providerRepository;
             _mapper = mapper;
+            _productService = productService;
         }
 
         [Route("products-list")]
@@ -69,7 +72,10 @@ namespace DevDe.App.Controllers
 
             productViewModel.Image = imgPrefix + productViewModel.ImageUpload.FileName;
 
-            await _productRepository.Add(_mapper.Map<Product>(productViewModel));
+            await _productService.Add(_mapper.Map<Product>(productViewModel));
+
+            if (!OperationValid())
+                return View(productViewModel);
 
             return RedirectToAction("Index");
             
@@ -123,7 +129,10 @@ namespace DevDe.App.Controllers
             updateProduct.Value = productViewModel.Value;
             updateProduct.Active = productViewModel.Active;
 
-            await _productRepository.Update(_mapper.Map<Product>(updateProduct));
+            await _productService.Update(_mapper.Map<Product>(updateProduct));
+
+            if (!OperationValid())
+                return View(productViewModel);
 
             return RedirectToAction("Index");
         }
@@ -153,7 +162,10 @@ namespace DevDe.App.Controllers
                 return NotFound();
             }
 
-            await _productRepository.Remove(id);
+            await _productService.Remove(id);
+
+            if (!OperationValid())
+                return View(product);
 
             return RedirectToAction("Index");
         }

@@ -12,14 +12,15 @@ namespace DevDe.App.Controllers
     public class ProvidersController : BaseController
     {
         private readonly IProviderRepository _providerRepository;
-        private readonly IAddressRepository _addressRepository;
+        private readonly IProviderService _providerService;
         private readonly IMapper _mapper;
 
-        public ProvidersController(IProviderRepository providerRepository, IMapper mapper, IAddressRepository addressRepository)
+        public ProvidersController(IProviderRepository providerRepository, IMapper mapper, 
+                                    IProviderService providerService, INotifier notifier) : base(notifier)
         {
             _providerRepository = providerRepository;
             _mapper = mapper;
-            _addressRepository = addressRepository;
+            _providerService = providerService;
         }
 
         [Route("providers-list")]
@@ -55,7 +56,10 @@ namespace DevDe.App.Controllers
                 return View(providerViewModel);
 
             var provider = _mapper.Map<Provider>(providerViewModel);
-            await _providerRepository.Add(provider);
+            await _providerService.Add(provider);
+
+            if (!OperationValid())
+                return View(providerViewModel);
 
             return RedirectToAction("Index");
         }
@@ -87,7 +91,10 @@ namespace DevDe.App.Controllers
                 return View(providerViewModel);
 
             var provider = _mapper.Map<Provider>(providerViewModel);
-            await _providerRepository.Update(provider);
+            await _providerService.Update(provider);
+
+            if (!OperationValid())
+                return View(await GetProviderProductsAddress(id));
 
             return RedirectToAction("Index");
             
@@ -97,6 +104,7 @@ namespace DevDe.App.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var providerViewModel = await GetProviderAddress(id);
+
             if (providerViewModel == null)
             {
                 return NotFound();
@@ -110,14 +118,20 @@ namespace DevDe.App.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var providerViewModel = await GetProviderAddress(id);
+            var provider = await GetProviderAddress(id);
 
-            if (providerViewModel == null)
+            if (provider == null)
             {
                 return NotFound();
             }
 
-            await _providerRepository.Remove(id);
+            await _providerService.Remove(id);
+
+            if (!OperationValid())
+                return View(provider);
+
+            // Msg to success for remove on View
+            TempData["Success"] = "Product remove success";
 
             return RedirectToAction("Index");
         }
@@ -159,7 +173,10 @@ namespace DevDe.App.Controllers
             if (!ModelState.IsValid)
                 return PartialView("_AddressUpdate", providerViewModel);
 
-            await _addressRepository.Update(_mapper.Map<Address>(providerViewModel.Address));
+            await _providerService.UpdateAddress(_mapper.Map<Address>(providerViewModel.Address));
+
+            if (!OperationValid())
+                return PartialView("_UpdateAddress", providerViewModel);
 
             var url = Url.Action("GetAddress", "Providers", new { id = providerViewModel.Address.ProviderId });
 

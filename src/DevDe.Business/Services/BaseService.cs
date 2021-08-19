@@ -1,4 +1,6 @@
 ﻿using AppMvcBasic.Models;
+using DevDe.Business.Interfaces;
+using DevDe.Business.Notifications;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -6,6 +8,13 @@ namespace DevDe.Business.Services
 {
     public abstract class BaseService
     {
+        private readonly INotifier _notifier;
+
+        protected BaseService(INotifier notifier)
+        {
+            _notifier = notifier;
+        }
+
         protected void Notify(ValidationResult validationResult)
         {
             foreach (var error in validationResult.Errors)
@@ -16,7 +25,7 @@ namespace DevDe.Business.Services
 
         protected void Notify(string msg)
         {
-            // Send this erro untill View
+            _notifier.Handle(new Notification(msg));
         }
 
         protected bool ExecuteValidation<TV, TE>(TV validation, TE entity) where TV : AbstractValidator<TE> where TE : Entity

@@ -1,5 +1,7 @@
 ﻿using DevDe.App.Extensions;
 using DevDe.Business.Interfaces;
+using DevDe.Business.Notifications;
+using DevDe.Business.Services;
 using DevDe.Data.Context;
 using DevDe.Data.Repository;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
@@ -16,6 +18,11 @@ namespace DevDe.App.Configurations
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddSingleton<IValidationAttributeAdapterProvider, CoinValidationAttributeAdapterProvider>();
+
+            services.AddScoped<INotifier, Notifier>();
+            services.AddScoped<IProviderService, ProviderService>();
+            services.AddScoped<IProductService, ProductService>();
+
 
             return services;
         }

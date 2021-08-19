@@ -11,7 +11,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+
+            @*should it work, but not. Apply in others views both success and error. When it works, remove row above.
+            <vc:Summary></vc:Summary>*@
 
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
