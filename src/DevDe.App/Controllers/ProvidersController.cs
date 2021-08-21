@@ -6,9 +6,12 @@ using DevDe.App.ViewModels;
 using DevDe.Business.Interfaces;
 using AutoMapper;
 using AppMvcBasic.Models;
+using Microsoft.AspNetCore.Authorization;
+using DevDe.App.Extensions;
 
 namespace DevDe.App.Controllers
 {
+    [Authorize]
     public class ProvidersController : BaseController
     {
         private readonly IProviderRepository _providerRepository;
@@ -23,12 +26,14 @@ namespace DevDe.App.Controllers
             _providerService = providerService;
         }
 
+        [AllowAnonymous]
         [Route("providers-list")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProviderViewModel>>(await _providerRepository.GetAll()));
         }
 
+        [AllowAnonymous]
         [Route("providers-data/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
@@ -41,12 +46,14 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
+        [ClaimsAuthotize("Provider","Edit")]
         [Route("new-provider")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [ClaimsAuthotize("Provider","Add")]
         [Route("new-provider")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -64,6 +71,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [ClaimsAuthotize("Provider", "Edit")]
         [Route("providers-edit/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -77,6 +85,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
+        [ClaimsAuthotize("Provider","Edit")]
         [Route("providers-edit/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -100,6 +109,7 @@ namespace DevDe.App.Controllers
             
         }
 
+        [ClaimsAuthotize("Provider","Delete")]
         [Route("delete-providers/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -113,6 +123,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
+        [ClaimsAuthotize("Provider","Delete")]
         [Route("delete-providers/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -136,6 +147,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         [Route("get-address-providers/{id:guid}")]
         public async Task<IActionResult> GetAddress(Guid id)
         {
@@ -149,6 +161,7 @@ namespace DevDe.App.Controllers
             return PartialView("_AddressDetails", provider);
         }
 
+        [ClaimsAuthotize("Provider","Edit")]
         [Route("update-address-providers/{id:guid}")]
         public async Task<IActionResult> AddressUpdate(Guid id)
         {
@@ -162,6 +175,7 @@ namespace DevDe.App.Controllers
             return PartialView("_AddressUpdate", new ProviderViewModel { Address = provider.Address });
         }
 
+        [ClaimsAuthotize("Provider", "Edit")]
         [Route("update-address-providers/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -59,7 +59,7 @@
                     @Html.DisplayFor(model => model.Address.State)
                 </td>
                 <td>
-                    <a asp-action="AddressUpdate" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
+                    <a supress-by-action="Edit, GetAddress" asp-action="AddressUpdate" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
                         <span title="Edit" class="fa fa-pencil-alt"></span>
                     </a>
                 </td>
