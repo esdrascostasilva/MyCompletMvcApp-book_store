@@ -71,7 +71,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
-        [ClaimsAuthotize("Provider", "Edit")]
+        [ClaimsAuthotize("Provider","Edit")]
         [Route("providers-edit/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -175,7 +175,7 @@ namespace DevDe.App.Controllers
             return PartialView("_AddressUpdate", new ProviderViewModel { Address = provider.Address });
         }
 
-        [ClaimsAuthotize("Provider", "Edit")]
+        [ClaimsAuthotize("Provider","Edit")]
         [Route("update-address-providers/{id:guid}")]
         [HttpPost]
         [ValidateAntiForgeryToken]

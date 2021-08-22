@@ -53,7 +53,8 @@ namespace DevDe.App
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/error/500");
+                app.UseExceptionHandler("/error/{0}");
                 app.UseHsts();
             }
 

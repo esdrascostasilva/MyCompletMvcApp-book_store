@@ -146,7 +146,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
-        [ClaimsAuthotize("Product", "Delete")]
+        [ClaimsAuthotize("Product","Delete")]
         [Route("product-delete/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -160,7 +160,7 @@ namespace DevDe.App.Controllers
             return View(product);
         }
 
-        [ClaimsAuthotize("Product", "Delete")]
+        [ClaimsAuthotize("Product","Delete")]
         [Route("product-delete/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
