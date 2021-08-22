@@ -62,7 +62,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Product","Add")]
         [Route("new-product")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel productViewModel)
         {
             productViewModel = await FillProviders(productViewModel);
@@ -105,7 +104,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Product","Edit")]
         [Route("edit-product/{id:guid}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProductViewModel productViewModel)
         {
             if (id != productViewModel.Id)
@@ -163,7 +161,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Product","Delete")]
         [Route("product-delete/{id:guid}")]
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var product = await GetProduct(id);

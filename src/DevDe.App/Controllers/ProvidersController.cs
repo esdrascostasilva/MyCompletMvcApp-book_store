@@ -56,7 +56,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Provider","Add")]
         [Route("new-provider")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProviderViewModel providerViewModel)
         {
             if (!ModelState.IsValid)
@@ -88,7 +87,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Provider","Edit")]
         [Route("providers-edit/{id:guid}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, ProviderViewModel providerViewModel)
         {
             if (id != providerViewModel.Id)
@@ -126,7 +124,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Provider","Delete")]
         [Route("delete-providers/{id:guid}")]
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var provider = await GetProviderAddress(id);
@@ -178,7 +175,6 @@ namespace DevDe.App.Controllers
         [ClaimsAuthotize("Provider","Edit")]
         [Route("update-address-providers/{id:guid}")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddressUpdate(ProviderViewModel providerViewModel)
         {
             ModelState.Remove("Name");
