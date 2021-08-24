@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<DevDe.App.ViewModels.ProductViewModel>
 
 @{
-    ViewData["Title"] = "Products List";
+    ViewData["Title"] = "Lista de Produtos";
 }
 
 <h1>@ViewData["Title"]</h1>
 <hr />
 
-<p>
-    <a class="btn btn-info" asp-action="Create">New Product</a>
+<vc:Summary></vc:Summary>
+
+<p supress-by-claim-name="Product" supress-by-claim-value="Add">
+    <a class="btn btn-info" asp-action="Create">Novo Produto</a>
 </p>
 
 <partial name="_ProductsList" />

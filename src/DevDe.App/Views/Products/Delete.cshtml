@@ -1,12 +1,12 @@
 ﻿@model DevDe.App.ViewModels.ProductViewModel
 
 @{
-    ViewData["Title"] = "Delete " + Model.Name;
+    ViewData["Title"] = "Excluir " + Model.Name;
 }
 
 <h4 style="padding-top: 50px">@ViewData["Title"] </h4>
 
-<h5>Are you sure this?</h5>
+<h5>Tem certeza disso?</h5>
 
 <div class="row">
     <div class="col-md-4">
@@ -50,7 +50,7 @@
             <form asp-action="Delete">
                 <input type="hidden" asp-for="Id" />
                 <input type="submit" value="Delete" class="btn btn-danger" />
-                <a class="btn btn-info" href="javascript:window.history.back();">Back</a>
+                <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
             </form>
         </div>
 

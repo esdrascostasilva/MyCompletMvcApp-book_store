@@ -1,7 +1,7 @@
 ﻿@model DevDe.App.ViewModels.ProductViewModel
 
 @{ 
-    ViewData["Title"] = "Products' Details - " + Model.Name;
+    ViewData["Title"] = "Detalhes do produto: " + Model.Name;
 }
 
 <h4 style="padding-top: 50px">@ViewData["Title"]</h4>
@@ -51,8 +51,8 @@
         </dl>
 
         <div>
-           <a class="btn btn-dark" sp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-           <a class="btn btn-info" href="javascript:window.history.back();">Back</a>
+           <a supress-by-claim-name="Product" supress-by-claim-value="Edit" class="btn btn-dark" sp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+           <a class="btn btn-info" href="javascript:window.history.back();">Voltar</a>
         </div>
 
     </div>

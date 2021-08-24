@@ -7,15 +7,14 @@ namespace DevDe.App.Extensions
 {
     [HtmlTargetElement("*", Attributes = "supress-by-claim-name")]
     [HtmlTargetElement("*", Attributes= "supress-by-claim-value")]
-    public class DeleteElementByClaimTagHelper : TagHelper 
+    public class CustomTagHelpersTagHelper : TagHelper 
     {
         private readonly IHttpContextAccessor _contextAccessor;
 
-        public DeleteElementByClaimTagHelper(IHttpContextAccessor contextAccessor)
+        public CustomTagHelpersTagHelper(IHttpContextAccessor contextAccessor)
         {
             _contextAccessor = contextAccessor;
         }
-
 
         [HtmlAttributeName("supress-by-claim-name")]
         public string IdentityClaimName { get; set; }
@@ -74,7 +73,7 @@ namespace DevDe.App.Extensions
 
             output.Attributes.RemoveAll("href");
             output.Attributes.Add(new TagHelperAttribute("style", "cursor: not-allowed"));
-            output.Attributes.Add(new TagHelperAttribute("title", "You not permission"));
+            output.Attributes.Add(new TagHelperAttribute("title", "You do not have permission"));
         }
 
     }

@@ -12,20 +12,20 @@ namespace DevDe.App.ViewModels
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "The field {0} is mandatory")]
-        [StringLength(100, ErrorMessage = "The field {0} need have between {2} and {1} characters", MinimumLength = 2)]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [StringLength(100, ErrorMessage = "O campo {0} precisa conter entre {2} e {1} caracteres.", MinimumLength = 2)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "The field {0} is mandatory")]
-        [StringLength(14, ErrorMessage = "The field {0} need have between {2} and {1} characters", MinimumLength = 2)]
+        [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        [StringLength(14, ErrorMessage = "O campo {0} precisa conter entre {2} e {1} caracteres.", MinimumLength = 2)]
         public string Document { get; set; }
 
-        [DisplayName("Type: CPF or CNPJ")]
+        [DisplayName("Tipo: CPF ou CNPJ")]
         public int TypeProvider { get; set; }
 
         public AddressViewModel Address { get; set; }
 
-        [DisplayName("Active?")]
+        [DisplayName("Ativo?")]
         public bool Active { get; set; }
 
         public IEnumerable<ProductViewModel> Products { get; set; }

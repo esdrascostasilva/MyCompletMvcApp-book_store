@@ -46,7 +46,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
-        [ClaimsAuthotize("Provider","Edit")]
+        [ClaimsAuthotize("Provider","Add")]
         [Route("new-provider")]
         public IActionResult Create()
         {

@@ -1,7 +1,7 @@
 ﻿@model DevDe.App.ViewModels.ProductViewModel
 
 @{
-    ViewData["Title"] = "Edit the book " + Model.Name;
+    ViewData["Title"] = "Editar o livro " + Model.Name;
 }
 
 <h4 style="padding-top:30px">@ViewData["Title"] </h4>
@@ -15,17 +15,24 @@
             <input type="hidden" asp-for="Id" />
 
             <div class="form-group">
+                <label asp-for="ProviderId" class="control-label"></label><br />
+                <label><b>@Model.Provider.Name</b></label>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <textarea cols="40" rows="5" asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label>Current Image</label>
+                <label>Current Image2</label>
                 <img src="~/images/@Model.Image" alt="@Model.Image" style="width: 70px; height: 100px" />
             </div>
 
