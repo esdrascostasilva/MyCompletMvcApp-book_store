@@ -3,7 +3,7 @@
 <div style="padding-top: 20px">
     <div>
         <hr />
-        <h4>Address</h4>
+        <h4>Endereço</h4>
     </div>
 
     @if (Model != null)
@@ -59,8 +59,8 @@
                     @Html.DisplayFor(model => model.Address.State)
                 </td>
                 <td>
-                    <a supress-by-action="Edit, GetAddress" asp-action="AddressUpdate" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
-                        <span title="Edit" class="fa fa-pencil-alt"></span>
+                    <a supress-by-action="Edit,GetAddress" asp-action="AddressUpdate" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
+                        <span title="Editar" class="fa fa-pencil-alt"></span>
                     </a>
                 </td>
             </tr>

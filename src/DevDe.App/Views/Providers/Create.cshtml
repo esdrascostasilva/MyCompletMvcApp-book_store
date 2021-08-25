@@ -1,7 +1,7 @@
 ﻿@model DevDe.App.ViewModels.ProviderViewModel
 
 @{
-    ViewData["Title"] = "New Provider";
+    ViewData["Title"] = "Novo Fornecedor";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -11,10 +11,10 @@
     <div class="col-md-4">
         <form asp-action="Create">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div> 
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            @*should it work, but not. Apply in others views both success and error. When it works, remove row above.
-            <vc:Summary></vc:Summary>*@
+            should it work, but not. Apply in others views both success and error. When it works, remove row above.*@
+            <vc:Summary></vc:Summary>
 
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -37,14 +37,14 @@
                 </label>
             </div>
 
-            <h4>Address</h4>
+            <h4>Endereço</h4>
             <hr />
 
             <partial name="_Address" />
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
-                <a class="btn btn-info" asp-action="Index">Back to List</a>
+                <a class="btn btn-info" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>

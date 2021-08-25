@@ -1,8 +1,5 @@
 ﻿using AppMvcBasic.Models;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DevDe.Business.Models.Validation
 {

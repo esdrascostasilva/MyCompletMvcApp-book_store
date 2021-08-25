@@ -7,11 +7,11 @@ namespace DevDe.App.Extensions
 {
     [HtmlTargetElement("*", Attributes = "supress-by-claim-name")]
     [HtmlTargetElement("*", Attributes= "supress-by-claim-value")]
-    public class CustomTagHelpersTagHelper : TagHelper 
+    public class DeleteElementByClaimTagHelper : TagHelper 
     {
         private readonly IHttpContextAccessor _contextAccessor;
 
-        public CustomTagHelpersTagHelper(IHttpContextAccessor contextAccessor)
+        public DeleteElementByClaimTagHelper(IHttpContextAccessor contextAccessor)
         {
             _contextAccessor = contextAccessor;
         }

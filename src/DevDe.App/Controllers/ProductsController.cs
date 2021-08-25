@@ -51,7 +51,7 @@ namespace DevDe.App.Controllers
             return View(productViewModel);
         }
 
-        [ClaimsAuthotize("Product","Add")]
+        [ClaimsAuthotize("Product", "Add")]
         [Route("new-product")]
         public async Task<IActionResult> Create()
         {
@@ -59,7 +59,7 @@ namespace DevDe.App.Controllers
             return View(productViewModel);
         }
 
-        [ClaimsAuthotize("Product","Add")]
+        [ClaimsAuthotize("Product", "Add")]
         [Route("new-product")]
         [HttpPost]
         public async Task<IActionResult> Create(ProductViewModel productViewModel)
@@ -87,7 +87,7 @@ namespace DevDe.App.Controllers
             
         }
 
-        [ClaimsAuthotize("Product","Edit")]
+        [ClaimsAuthotize("Product", "Edit")]
         [Route("edit-product/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -101,7 +101,7 @@ namespace DevDe.App.Controllers
             return View(productViewModel);
         }
 
-        [ClaimsAuthotize("Product","Edit")]
+        [ClaimsAuthotize("Product", "Edit")]
         [Route("edit-product/{id:guid}")]
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, ProductViewModel productViewModel)
@@ -144,7 +144,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
-        [ClaimsAuthotize("Product","Delete")]
+        [ClaimsAuthotize("Product", "Delete")]
         [Route("product-delete/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -158,7 +158,7 @@ namespace DevDe.App.Controllers
             return View(product);
         }
 
-        [ClaimsAuthotize("Product","Delete")]
+        [ClaimsAuthotize("Product", "Delete")]
         [Route("product-delete/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

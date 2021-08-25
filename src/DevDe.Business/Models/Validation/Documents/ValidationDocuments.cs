@@ -12,7 +12,8 @@ namespace DevDe.Business.Models.Validation.Documents
         {
             var cpfNumbers = Utils.OnlyNumbers(cpf);
 
-            if (!ValidSize(cpfNumbers)) return false;
+            if (!ValidSize(cpfNumbers)) 
+                return false;
 
             return !HasRepeatedDigits(cpfNumbers) && HasValidDigits(cpfNumbers);
         }
@@ -78,16 +79,16 @@ namespace DevDe.Business.Models.Validation.Documents
         {
             string[] invalidNumbers =
             {
-                "00000000000",
-                "11111111111",
-                "22222222222",
-                "33333333333",
-                "44444444444",
-                "55555555555",
-                "66666666666",
-                "77777777777",
-                "88888888888",
-                "999999999999"
+                "00000000000000",
+                "11111111111111",
+                "22222222222222",
+                "33333333333333",
+                "44444444444444",
+                "55555555555555",
+                "66666666666666",
+                "77777777777777",
+                "88888888888888",
+                "99999999999999"
             };
             return invalidNumbers.Contains(value);
         }
@@ -98,11 +99,9 @@ namespace DevDe.Business.Models.Validation.Documents
             var digitChecker = new DigitChecker(number)
                 .WithMultiplesOfUpTo(2, 9)
                 .Replacing("0", 10, 11);
-            //var firstDigit = digitChecker.CalculateDigit();
-            var firstDigit = 1;
-            //digitChecker.AddDigit(firstDigit);
-            //var secondDigit = digitChecker.CalculateDigit();
-            var secondDigit = 2;
+            var firstDigit = digitChecker.CalculateDigit();
+            digitChecker.AddDigit(firstDigit);
+            var secondDigit = digitChecker.CalculateDigit();
 
             return string.Concat(firstDigit, secondDigit) == value.Substring(SizeCnpj - 2, 2);
         }
@@ -144,9 +143,26 @@ namespace DevDe.Business.Models.Validation.Documents
             _number = string.Concat(_number, digit);
         }
 
-        public void CalculateDigit()
+        public string CalculateDigit()
         {
+            return !(_number.Length > 0) ? "" : GetDigitSum();
+        }
 
+        private string GetDigitSum()
+        {
+            var sum = 0;
+            for (int i = _number.Length - 1, m = 0; i >= 0; i--)
+            {
+                var produto = (int)char.GetNumericValue(_number[i]) * _multiples[m];
+                sum += produto;
+
+                if (++m >= _multiples.Count) m = 0;
+            }
+
+            var mod = (sum % Module);
+            var resultado = _moduleComplement ? Module - mod : mod;
+
+            return _replices.ContainsKey(resultado) ? _replices[resultado] : resultado.ToString();
         }
     }
 

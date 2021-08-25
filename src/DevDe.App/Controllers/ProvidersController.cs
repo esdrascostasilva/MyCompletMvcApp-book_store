@@ -46,14 +46,14 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
-        [ClaimsAuthotize("Provider","Add")]
+        [ClaimsAuthotize("Provider", "Add")]
         [Route("new-provider")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [ClaimsAuthotize("Provider","Add")]
+        [ClaimsAuthotize("Provider", "Add")]
         [Route("new-provider")]
         [HttpPost]
         public async Task<IActionResult> Create(ProviderViewModel providerViewModel)
@@ -70,7 +70,7 @@ namespace DevDe.App.Controllers
             return RedirectToAction("Index");
         }
 
-        [ClaimsAuthotize("Provider","Edit")]
+        [ClaimsAuthotize("Provider", "Edit")]
         [Route("providers-edit/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -84,7 +84,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
-        [ClaimsAuthotize("Provider","Edit")]
+        [ClaimsAuthotize("Provider", "Edit")]
         [Route("providers-edit/{id:guid}")]
         [HttpPost]
         public async Task<IActionResult> Edit(Guid id, ProviderViewModel providerViewModel)
@@ -107,7 +107,7 @@ namespace DevDe.App.Controllers
             
         }
 
-        [ClaimsAuthotize("Provider","Delete")]
+        [ClaimsAuthotize("Provider", "Delete")]
         [Route("delete-providers/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
@@ -121,7 +121,7 @@ namespace DevDe.App.Controllers
             return View(providerViewModel);
         }
 
-        [ClaimsAuthotize("Provider","Delete")]
+        [ClaimsAuthotize("Provider", "Delete")]
         [Route("delete-providers/{id:guid}")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -172,7 +172,7 @@ namespace DevDe.App.Controllers
             return PartialView("_AddressUpdate", new ProviderViewModel { Address = provider.Address });
         }
 
-        [ClaimsAuthotize("Provider","Edit")]
+        [ClaimsAuthotize("Provider", "Edit")]
         [Route("update-address-providers/{id:guid}")]
         [HttpPost]
         public async Task<IActionResult> AddressUpdate(ProviderViewModel providerViewModel)

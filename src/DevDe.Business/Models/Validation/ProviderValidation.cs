@@ -1,9 +1,6 @@
 ﻿using AppMvcBasic.Models;
 using DevDe.Business.Models.Validation.Documents;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DevDe.Business.Models.Validation
 {
